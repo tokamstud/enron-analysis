@@ -3,10 +3,12 @@ from mrjob.job import MRJob
 
 class MRCountSum(MRJob):
 
-    def mapper(self, _, line):
-		line = line.strip()  # remove leading and trailing whitespace
+	def mapper(self, _, line):
+		line = line.strip()
 		if line.find("From:") == 0:
-			login = line[line.find(" ")+1:line.find("@")]
+			if ("@enron" in line) {
+				login = line[line.find(" ")+1:line.find("@")]
+			}
 			if len(login) == 0:
 				login == "empty"
 			yield login, 1
@@ -17,4 +19,4 @@ class MRCountSum(MRJob):
 		yield key, sum(values)
 
 if __name__ == '__main__':
-    MRCountSum.run()
+	MRCountSum.run()
