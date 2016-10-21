@@ -5,8 +5,8 @@ class MRCountSum(MRJob):
 
 	def mapper(self, _, line):
 		line = line.strip()
-		if line.find("From:") == 0 and line.find("@enron.com") and (not (line.find("<"))) and (not (line.find("["))):
-			login = line[line.find("From:")+5:line.find("@")].strip()
+		if line.find("From:") == 0 and line.find("@enron.com"):
+			login = line[line.find("From:")+5:line.find("@enron")].strip()
 			if len(login) == 0:
 				login == "empty"
 			yield login, 1
