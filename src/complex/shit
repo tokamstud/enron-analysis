@@ -1,0 +1,8 @@
+#for val in values:
+#	if not val[1][1] in from_who:
+#		from_who.append(val[1][1])
+#tree_size = len(from_who)
+
+for mid in values:
+	lista.append(mid)
+#lista.append(tree_size)
