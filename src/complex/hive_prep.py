@@ -60,5 +60,60 @@ class MRMultilineInput(MRJob):
 			self.message_id = line[start:stop]
 		self.after_key = False
 
+
+# STEP 2
+	def mapper_child(self, message_id, values):
+		clean_body = ''
+		clean_date = ''
+		clean_from = ''
+		clean_to = ''
+		clean_values = []
+		start = 0
+		for idx, line in enumerate(values):
+			if "Date:" in line:
+				clean_date = line[5:].strip()
+			if line.find("From:") == 0:
+				clean_from = line[5:].strip()
+			if line.find("To:") == 0:
+				clean_to = line[3:].strip()
+			if "X-FileName:" in line:
+				start = idx+1
+				break
+		for i in range(start,len(values)):
+			if "-Original Message-" in values[i]:
+				break
+			clean_body=clean_body + values[i] + " "
+
+		clean_values.append(clean_date)
+		clean_values.append(clean_from)
+		#clean_values.append(clean_to)
+		#clean_values.append(clean_body.strip())
+		clean_values.append("TEST BODY")
+		newval = values
+		for element in values:
+			if "subject:" in element.lower():
+				subject = element
+				break
+		if "re:" in subject.lower():
+			newval.append("child")
+		elif "fw:" not in subject.lower():
+			newval.append("parent")
+		for element in newval:
+			if "Subject:" in element:
+				subject = element
+				break
+		relation = values[-1]
+		i = 0
+		colon = 0
+		if "<" not in subject:
+			for char in subject:
+				i=i+1
+				if char == ":":
+					colon = i
+			sub = subject[colon+1:].strip()
+			sub_relation = []
+			sub_relation.append(sub)
+			sub_relation.append(relation)
+			yield sub_relation, (message_id,clean_values)
 if __name__ == '__main__':
 	MRMultilineInput.run()

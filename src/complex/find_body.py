@@ -27,6 +27,8 @@ class MRMultilineInput(MRJob):
 			#	reducer=self.reducer_word),
 			#MRSep(mapper=self.mapper_tree_nodes,
 			#	reducer=self.reducer_tree_nodes)
+			#MRStep(mapper=self.mapper_child_2, # count parents distinct
+			#	reducer=self.reducer_child_2)
 			]
 # STEP 1
 	def mapper_init_count(self):
@@ -96,6 +98,7 @@ class MRMultilineInput(MRJob):
 		clean_values.append(clean_from)
 		#clean_values.append(clean_to)
 		#clean_values.append(clean_body.strip())
+		clean_values.append("TEST BODY")
 		newval = values
 		for element in values:
 			if "subject:" in element.lower():
@@ -121,23 +124,54 @@ class MRMultilineInput(MRJob):
 			sub_relation = []
 			sub_relation.append(sub)
 			sub_relation.append(relation)
-			sub_relation.append(1)
 			yield sub_relation, (message_id,clean_values)
 
+# finds who has started most conversations11
+#	def reducer_child(self, key, values):
+#		relation = key[1]
+#		from_mail = values[1][1]
+#
+#		if relation.find("parent") > -1:
+#			yield key,1
+#
+#	def mapper_child_2(self, mail, relation):
+#		yield mail, 1
+#	def reducer_child_2(self, mail, values):
+#		yield mail, sum(values)
+
+# 	finds who has been in most conversations
 	def reducer_child(self, key, values):
 		lista = []
+
+		#for mid in values:
+		#	lista.append(mid)
+
 		from_who = []
 		for val in values:
 			if not val[1][1] in from_who:
 				from_who.append(val[1][1])
-		tree_size = len(from_who)
+		num = len(from_who)
+		#lista.append(num)
+		if num > 50:
+			yield key[0], num
+
+
+# standard
+	def reducer_child(self, key, values):
+		lista = []
 
 		for mid in values:
 			lista.append(mid)
-		lista.append(tree_size)
-		yield key[0], (key[1],lista)
 
-# STEP 3
+		from_who = []
+		for val in values:
+			if not val[1][1] in from_who:
+				from_who.append(val[1][1])
+		num = len(from_who)
+
+		yield key[0], (key[0], lista)
+
+# STEP 3 number of messages in thread++
 	def mapper_init_stat(self):
 		self.subject = ''
 		self.value = {}
@@ -161,7 +195,7 @@ class MRMultilineInput(MRJob):
 					self.value[value[0]] = value[1]
 				elif value[0] == "child":
 					self.value[value[0]] = value[1]
-# STEP 4
+# STEP 4 who was most active
 	def mapper_count_importance(self, subject, data):
 		for d in data:
 			for s in data[d]:
@@ -172,8 +206,8 @@ class MRMultilineInput(MRJob):
 		suma = sum(k)
 		if suma > 150:
 			yield int(suma),email
-# STEP 4.1
 
+# STEP 4.1 <word> usage by date
 	def mapper_word(self, subject, data):
 		months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 		years = ["1998", "1999", "2000", "2001", "2002"]
