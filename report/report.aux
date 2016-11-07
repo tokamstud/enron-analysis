@@ -1,0 +1,80 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand*\HyPL@Entry[1]{}
+\citation{data set}
+\citation{hadoop wikipedia}
+\citation{apache hadoop}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {title}{Analyzing email reply chains using mrjob and Hive on Enron email data set}{1}{chapter.1}}
+\@writefile{toc}{\authcount {2}}
+\@writefile{toc}{\contentsline {author}{Tomasz Gliniecki \and Denys Chechelnytskyy}{1}{chapter.1}}
+\citation{Enron mining}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Overview of our approach}{2}{section.1.1}}
+\citation{Enron mining}
+\citation{data set}
+\citation{data set}
+\citation{Enron mining}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Data set overview}{3}{section.1.2}}
+\citation{Enron mining}
+\newlabel{datasetstructure}{{1.1}{5}{Example showing structure of the data set that we used as a guide}{lstlisting.1.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.1}Example showing structure of the data set that we used as a guide}{5}{lstlisting.1.1}}
+\citation{hortonworks}
+\citation{aws}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Hadoop setup usage}{6}{section.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Description of MapReduce algorithms}{7}{section.1.4}}
+\newlabel{step12}{{1.2}{7}{First two step MapReduce that sorts and combines data into single row}{lstlisting.1.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.2}First two step MapReduce that sorts and combines data into single row}{7}{lstlisting.1.2}}
+\newlabel{manytoone}{{1.3}{10}{First mapper that combines relevant lines into one big value}{lstlisting.1.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.3}First mapper that combines relevant lines into one big value}{10}{lstlisting.1.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Counting threads of messages}{11}{subsection.1.4.1}}
+\newlabel{compokey}{{1.4}{12}{mapper that creates composite key\, in order to preserve the creator of the topic\, and conversation partner(s)}{lstlisting.1.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.4}mapper that creates composite key\, in order to preserve the creator of the topic\, and conversation partner(s)}{12}{lstlisting.1.4}}
+\newlabel{distperconv}{{1.5}{12}{reducer that will reduce \(subject\,relation\) composite key and some array of values}{lstlisting.1.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.5}reducer that will reduce \(subject\,relation\) composite key and some array of values}{12}{lstlisting.1.5}}
+\newlabel{counting subjects}{{1.6}{13}{reducer that will reduce \(subject\,relation\) composite key and some array of values}{lstlisting.1.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.6}reducer that will reduce \(subject\,relation\) composite key and some array of values}{13}{lstlisting.1.6}}
+\newlabel{populartopic}{{1.7}{14}{topics with the most participants}{lstlisting.1.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.7}topics with the most participants}{14}{lstlisting.1.7}}
+\newlabel{numparents}{{1.8}{14}{This reducer is using mapper from step 1}{lstlisting.1.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.8}This reducer is using mapper from step 1}{14}{lstlisting.1.8}}
+\citation{hive wikipedia}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Description of Hive usage}{15}{section.1.5}}
+\newlabel{hiveinput}{{1.9}{15}{What data looks like prepared for hive}{lstlisting.1.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.9}What data looks like prepared for hive}{15}{lstlisting.1.9}}
+\newlabel{hivequery}{{1.10}{16}{Hive query for creating table}{lstlisting.1.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.10}Hive query for creating table}{16}{lstlisting.1.10}}
+\newlabel{hiveout1}{{1.11}{16}{Hive output showing number of threads}{lstlisting.1.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.11}Hive output showing number of threads}{16}{lstlisting.1.11}}
+\newlabel{hivepopular}{{1.12}{17}{This reducer is using mapper from step 1}{lstlisting.1.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.12}This reducer is using mapper from step 1}{17}{lstlisting.1.12}}
+\citation{demankeylay}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Summary of key findings}{18}{section.1.6}}
+\newlabel{mapvshiveshow}{{1.13}{18}{Output from similar task performed in Hive in Listing \ref {hivepopular}}{lstlisting.1.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.13}Output from similar task performed in Hive in Listing \ref  {hivepopular}}{18}{lstlisting.1.13}}
+\newlabel{fraudfreq}{{1.14}{19}{Output of counting all frequency of usage of word "fraud" in distinct emails\, by date}{lstlisting.1.14}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1.14}Output of counting all frequency of usage of word "fraud" in distinct emails\, by date}{19}{lstlisting.1.14}}
+\citation{aws}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{20}{section.1.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Future improvements}{20}{section.1.8}}
+\bibcite{hortonworks}{1}
+\bibcite{aws}{2}
+\bibcite{Enron mining}{3}
+\bibcite{data set}{4}
+\bibcite{hadoop wikipedia}{5}
+\bibcite{apache hadoop}{6}
+\bibcite{hive wikipedia}{7}
+\bibcite{demankeylay}{8}
