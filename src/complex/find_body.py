@@ -19,8 +19,8 @@ class MRMultilineInput(MRJob):
 				mapper=self.mapper_count),
 			MRStep(mapper=self.mapper_child,
 				reducer=self.reducer_child),
-			#MRStep(mapper_init=self.mapper_init_stat,
-			#	mapper=self.mapper_stat)
+			MRStep(mapper_init=self.mapper_init_stat,
+				mapper=self.mapper_stat)
 			#MRStep(mapper=self.mapper_count_importance,
 			#	reducer=self.reducer_count_importance),
 			#MRStep(mapper=self.mapper_word,
@@ -96,7 +96,7 @@ class MRMultilineInput(MRJob):
 
 		clean_values.append(clean_date)
 		clean_values.append(clean_from)
-		#clean_values.append(clean_to)
+		clean_values.append(clean_to)
 		#clean_values.append(clean_body.strip())
 		clean_values.append("TEST BODY")
 		newval = values
@@ -140,21 +140,21 @@ class MRMultilineInput(MRJob):
 #		yield mail, sum(values)
 
 # 	finds who has been in most conversations
-	def reducer_child(self, key, values):
-		lista = []
-
-		#for mid in values:
-		#	lista.append(mid)
-
-		from_who = []
-		for val in values:
-			if not val[1][1] in from_who:
-				from_who.append(val[1][1])
-		num = len(from_who)
-		#lista.append(num)
-		if num > 50:
-			yield key[0], num
-
+#	def reducer_child(self, key, values):
+#		lista = []
+#
+#		#for mid in values:
+#		#	lista.append(mid)
+#
+#		from_who = []
+#		for val in values:
+#			if not val[1][1] in from_who:
+#				from_who.append(val[1][1])
+#		num = len(from_who)
+#		#lista.append(num)
+#		if num > 50:
+#			yield key[0], num
+#
 
 # standard
 	def reducer_child(self, key, values):
@@ -169,7 +169,7 @@ class MRMultilineInput(MRJob):
 				from_who.append(val[1][1])
 		num = len(from_who)
 
-		yield key[0], (key[0], lista)
+		yield key[0], (key[1], lista)
 
 # STEP 3 number of messages in thread++
 	def mapper_init_stat(self):
